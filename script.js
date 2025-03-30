@@ -1,3 +1,5 @@
+const BASE_URL = "https://api.open-meteo.com/v1/forecast";
+
 const cities = {
     sanFrancisco: { latitude: 37.7749, longitude: -122.4194, name: "San Francisco" },
     newYork: { latitude: 40.7128, longitude: -74.0060, name: "New York" },
@@ -12,13 +14,14 @@ const temperatureData = document.getElementById('temperature-data');
 const conditionsData = document.getElementById('conditions-data');
 
 // Fetch and display temperature data
-function fetchTemperatureData() {
+function fetchTempData() {
     Object.keys(cities).forEach(cityKey => {
         const city = cities[cityKey];
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&hourly=temperature_2m&temperature_unit=fahrenheit&timezone=America%2FNew_York`)
+        fetch(BASE_URL + `?latitude=${city.latitude}&longitude=${city.longitude}&hourly=temperature_2m&temperature_unit=fahrenheit&timezone=America%2FNew_York`)
             .then(response => response.json())
             .then(data => {
-                const temperature = data.hourly.temperature_2m[0]; // Get current temperature
+                // Get current temperature
+                const temperature = data.hourly.temperature_2m[0];
                 const cityElement = document.createElement('div');
                 cityElement.classList.add('weather-item');
                 cityElement.innerHTML = `
@@ -34,7 +37,7 @@ function fetchTemperatureData() {
 function fetchConditionsData() {
     Object.keys(cities).forEach(cityKey => {
         const city = cities[cityKey];
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&hourly=weathercode&timezone=America%2FNew_York`)
+        fetch(BASE_URL + `?latitude=${city.latitude}&longitude=${city.longitude}&hourly=weathercode&timezone=America%2FNew_York`)
             .then(response => response.json())
             .then(data => {
                 // Get weather condition
@@ -71,7 +74,7 @@ function fetchConditionsData() {
 document.addEventListener('DOMContentLoaded', () => {
     // Fetch temperature data for the home page
     if (temperatureData) {
-        fetchTemperatureData();
+        fetchTempData();
     }
     // Fetch weather conditions for the conditions page
     if (conditionsData) {
