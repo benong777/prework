@@ -1,15 +1,12 @@
 # Prework
 
-Steps to Run the App:
+Steps to Run the App
 
-1. Clone the repository
+1. Clone the repository:
       git clone https://github.com/your-username/weather-app.git
 
-2. Navigate to the project folder
-      cd prework
-
-3. Open the app in a browser
-      Open index.html in a browser.
+2. Launch a browser:
+      Select 'Open File' (if using Chrome) and select the file index.html in the prework project directory.
 
 
 Weather App
