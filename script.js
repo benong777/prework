@@ -58,7 +58,7 @@ function fetchConditionsData() {
                         conditionText = "Rainy";
                         break;
                     default:
-                        conditionText = "Unknown";
+                        conditionText = "Clear";
                 }
                 const cityElement = document.createElement('div');
                 cityElement.classList.add('weather-item');
